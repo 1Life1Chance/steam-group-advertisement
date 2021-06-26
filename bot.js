@@ -86,7 +86,7 @@ community.on('sessionExpired', () => webLogin());
 
 client.on('webSession', function (sessionID, cookies) {
     console.log("Got web session");
-    doComment();
+    setTimeout(doComment, 30000);
     clearInterval(timeouts['CheckL_i']);
     timeouts['CheckL_i'] = setInterval(checkSteamLogged, moment.duration(10, "minutes"));
 });
