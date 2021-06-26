@@ -20,6 +20,7 @@
     "fs": "0.0.1-security",
     "node-steam-group": "^1.1.0",
     "steam-totp": "^2.1.1",
+    "steam-tradeoffer-manager": "^2.10.3",
     "steam-user": "^4.19.10",
     "steamcommunity": "^3.42.0"
   }

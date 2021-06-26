@@ -2,6 +2,7 @@ const SteamUser = require('steam-user');
 const SteamTotp = require('steam-totp');
 const SteamCommunity = require('steamcommunity');
 const steamgroup = require('node-steam-group');
+var TradeofferManager = require('steam-tradeoffer-manager');
 const fs = require('fs');
 const config = require('./config.json');
 
@@ -9,6 +10,11 @@ let didLogin = false;
 let timeouts = {};
 let client = new SteamUser();
 let community = new SteamCommunity();
+let manager = new TradeofferManager({
+    steam: client,
+    "language": "en",
+    "cancelTime": 24 * 60 * 60000
+});
 login();
 
 function login() {
@@ -86,7 +92,13 @@ community.on('sessionExpired', () => webLogin());
 
 client.on('webSession', function (sessionID, cookies) {
     console.log("Got web session");
-    setTimeout(doComment, 30000);
+    manager.setCookies(cookies, (err) => {
+        if (err) {
+            return console.log("An error occurred while setting cookies:" + err);
+        } else {
+            setTimeout(doComment, 30000);
+        }
+    });
     clearInterval(timeouts['CheckL_i']);
     timeouts['CheckL_i'] = setInterval(checkSteamLogged, moment.duration(10, "minutes"));
 });
