@@ -118,12 +118,12 @@ function doComment(){
     const groups = fs.readFileSync('groups.txt').toString().trim().split('\n');
     groups.forEach((group, index) => {
         setTimeout(async function () {
-            steamgroup.getstats(group, function(group, err){
+            steamgroup.getstats(group, function(groupInfo, err){
                 if(err){
                     console.log(err);
                     throw err;
                 } else {
-                    community.postGroupComment(group.id, config.comment, async function(err) {
+                    community.postGroupComment(groupInfo.id, config.comment, async function(err) {
                         if (err) {
                             console.log('An error occurred while trying the comment');
                             throw err;
