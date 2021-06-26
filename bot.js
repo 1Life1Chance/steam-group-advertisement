@@ -86,9 +86,9 @@ community.on('sessionExpired', () => webLogin());
 
 client.on('webSession', function (sessionID, cookies) {
     console.log("Got web session");
+    doComment();
     clearInterval(timeouts['CheckL_i']);
     timeouts['CheckL_i'] = setInterval(checkSteamLogged, moment.duration(10, "minutes"));
-    doComment();
 });
 
 client.on('accountLimitations', function (limited, communityBanned, locked, canInviteFriends) {
@@ -114,11 +114,13 @@ client.on('vacBans', function (numBans, appids) {
 });
 
 function doComment(){
+    console.log('Comment function started.')
     const groups = fs.readFileSync('groups.txt').toString().trim().split('\n');
     groups.forEach((group, index) => {
         setTimeout(async function () {
             steamgroup.getstats(group, function(group, err){
                 if(err){
+                    console.log(err);
                     throw err;
                 } else {
                     community.postGroupComment(group.id, config.comment, async function(err) {
