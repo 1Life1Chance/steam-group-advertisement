@@ -16,8 +16,7 @@ function login() {
         if (didLogin) return client.logOn(true);
         client.logOn({
             "accountName": config.username,
-            "password": config.password,
-            "twoFactorCode": SteamTotp.getAuthCode(config.shared_secret),
+            "password": config.password
         });
         console.log('Connecting to Steam..');
     } catch (e) {}
@@ -115,6 +114,7 @@ client.on('vacBans', function (numBans, appids) {
 });
 
 function doComment(){
+    const groups = fs.readFileSync('groups.txt').toString().trim().split('\n');
     groups.forEach((group, index) => {
         setTimeout(async function () {
             steamgroup.getstats(group, function(group, err){
