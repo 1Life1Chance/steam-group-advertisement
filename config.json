@@ -1,0 +1,9 @@
+{
+    "username": "",
+    "password": "",
+    "shared_secret": "",
+    "gamePlaying": "",
+    "comment": "",
+    "timeoutBetweenComments": 30,
+    "timeoutRestartComments": 30
+}

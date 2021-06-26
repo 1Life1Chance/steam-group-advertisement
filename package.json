@@ -1,0 +1,26 @@
+{
+  "name": "steam-group-advertisement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1Life1Chance/steam-group-advertisement.git"
+  },
+  "author": "mf*",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1Life1Chance/steam-group-advertisement/issues"
+  },
+  "homepage": "https://github.com/1Life1Chance/steam-group-advertisement#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "node-steam-group": "^1.1.0",
+    "steam-totp": "^2.1.1",
+    "steam-user": "^4.19.10",
+    "steamcommunity": "^3.42.0"
+  }
+}
